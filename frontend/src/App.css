@@ -129,33 +129,45 @@ button:hover {
 }
 
 /* Liste */
-ul {
+.items-container {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-li {
+.items-container > div {
+  width: 300px;
   background: #ecf0f1;
   padding: 15px 20px;
   border-radius: 6px;
-  margin-bottom: 12px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 16px;
   font-size: 1.1rem;
+  position: relative;
+}
+
+h3, p {
+  margin: 0;
+  word-break: break-all;
 }
 
 /* Bouton de suppression */
-li button {
+.items-container > div button {
   background: #e74c3c;
-  padding: 8px 12px;
+  padding: 6px 8px;
   border-radius: 6px;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   transition: background-color 0.3s ease;
 }
 
-li button:hover {
+.items-container > div button:hover {
   background: #c0392b;
 }

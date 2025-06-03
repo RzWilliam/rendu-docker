@@ -34,4 +34,14 @@ app.post('/notes', async (req, res) => {
   res.status(201).json(note);
 });
 
+app.delete('/notes/:id', async (req, res) => {
+  const { id } = req.params;
+  const note = await Note.findByPk(id);
+  if (!note) {
+    return res.status(404).json({ error: 'Note not found' });
+  }
+  await note.destroy();
+  res.status(204).end();
+});
+
 app.listen(3001, () => console.log('Backend running on port 3001'));

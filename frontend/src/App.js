@@ -18,6 +18,11 @@ function App() {
     setForm({ title: '', content: '' });
   };
 
+  const handleDelete = async (id) => {
+    await axios.delete(`http://localhost:3001/notes/${id}`);
+    setNotes(notes.filter(note => note.id !== id));
+  };
+
   return (
     <div style={{ padding: 20 }}>
       <h1>📝 MyNotes</h1>
@@ -38,14 +43,15 @@ function App() {
       </form>
 
       <h2>Notes :</h2>
-      <ul>
+      <div className='items-container'>
         {notes.map(note => (
-          <li key={note.id}>
-            <strong>{note.title}</strong><br />
-            {note.content}
-          </li>
+          <div key={note.id}>
+            <h3>{note.title}</h3>
+            <p>{note.content}</p>
+            <button onClick={() => handleDelete(note.id)}>X</button>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
